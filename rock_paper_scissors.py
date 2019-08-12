@@ -15,12 +15,16 @@ play_game_responses = ['Y', 'y', 'N', 'n']
 
 print("Welcome to Rock Paper Scissors! (c) Andrew Lynch 2019")
 time.sleep(1)
-print("Would you like to play? Enter Y/N")
+print("\n" + "Would you like to play? Enter Y/N")
 play_game = input()
+
+
+# loop awaiting acceptable response
 while play_game not in play_game_responses:
     print("I don't understand. Would you like to play? Enter Y/N")
     play_game = input()
 
+# start game
 if play_game == 'Y' or play_game == 'y':
     print("Great! Let's play Rock Paper Scissors!")
     time.sleep(1)
@@ -34,23 +38,24 @@ if play_game == 'Y' or play_game == 'y':
     # Set up continuous play loop
     while play_game == 'Y' or play_game == 'y':
 
-        # Randomly generate an element from the list of possible computer guesses
+        # Randomly generate a computer guess
+        # from the list of possible computer guesses
         computer_guess = rps[randint(0,2)]
 
         # Get player input
         print("What do you want to play? Rock, Paper or Scissors?")
         print("Enter your turn: ")
         player_guess = input()
-        if player_guess not in allowed_player_guesses:
+        while player_guess not in allowed_player_guesses:
             print("I don't understand. Do you want to play Rock, Paper or Scissors?")
             player_guess = input()
-        else:
-            time.sleep(1)
-            print("ooooo.......")
-            time.sleep(1)
-            print("\n")
 
-        # convert lower case to capitalised
+        time.sleep(1)
+        print("\n" + "ooooo.......")
+        time.sleep(1)
+        print("\n")
+
+        # convert lower case user input to capitalised
 
         if player_guess == 'rock':
             player_guess = 'Rock'
@@ -61,6 +66,7 @@ if play_game == 'Y' or play_game == 'y':
         else:
             continue
 
+        # print guesses
         print("You played " + player_guess + ".")
         print("Computer played...")
         time.sleep(1)
@@ -68,7 +74,7 @@ if play_game == 'Y' or play_game == 'y':
         print("\n")
         time.sleep(1.5)
 
-        # return result
+        # return result based on logic flow
 
         if computer_guess == player_guess:
             print("It's a tie! What are the odds?!")
@@ -94,6 +100,8 @@ if play_game == 'Y' or play_game == 'y':
         else:
             continue
 
+        # score tracker and display
+
         total_games += 1
         time.sleep(1)
         print("\n")
@@ -103,16 +111,22 @@ if play_game == 'Y' or play_game == 'y':
         print("\n")
         print("Win percentage: " + '{:.1%}'.format(player_score/total_games))
         print("\n")
+
+
+        # Set up repeat games
         print("Play again? (Y/N)")
         play_game = input()
+
+        # while loop awaits valid user input
         while play_game not in play_game_responses:
             print("I don't understand. Do you want to play again? Y/N")
             play_game = input()
         if play_game == 'Y' or play_game == 'y':
             continue
+        # end point
         else:
             print("Thanks for playing!")
             break
-
+# end point
 else:
     print("Thanks for playing!")
